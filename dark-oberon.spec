@@ -34,27 +34,31 @@ cd src
 sh create_makefile.sh
 
 %build
-%make DEFINES="-DDATA_DIR='\"%{_gamesdatadir}/%{name}/\"' -DUNIX=1 -DSOUND=0 -DDEBUG=0" CPPFLAGS="$RPM_OPT_FLAGS"
+%make DEFINES="-DDATA_DIR='\"%{_gamesdatadir}/%{name}/\"' -DUNIX=1 -DSOUND=0 -DDEBUG=0" CPPFLAGS="%{optflags}" LIBPATHS="-L/usr/X11R6/lib64"
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -m755 dark-oberon -D $RPM_BUILD_ROOT%{_gamesbindir}/%{name}
-install -d $RPM_BUILD_ROOT%{_gamesdatadir}/%{name}
-cp -r dat maps races schemes -d $RPM_BUILD_ROOT%{_gamesdatadir}/%{name}
+rm -rf %{buildroot}
+install -m755 dark-oberon -D %{buildroot}%{_gamesbindir}/%{name}
+install -d %{buildroot}%{_gamesdatadir}/%{name}
+cp -r dat maps races schemes -d %{buildroot}%{_gamesdatadir}/%{name}
 
-install -d $RPM_BUILD_ROOT%{_menudir}
-cat <<EOF >$RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}):command="%{_gamesbindir}/%{name}" \
-		icon="%{name}.png" \
-		needs="x11" \
-		section="More Applications/Games/Strategy" \
-		title="Dark Oberon" \
-		longtitle="%{Summary}"
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Abuse
+Comment=%{Summary}
+Exec=%{_gamesbindir}/%{name}
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Game;StrategyGame;
 EOF
 
-install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
-install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+install -m644 %{SOURCE11} -D %{buildroot}%{_miconsdir}/%{name}.png
+install -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/%{name}.png
+install -m644 %{SOURCE13} -D %{buildroot}%{_liconsdir}/%{name}.png
 
 %post
 %update_menus
@@ -63,14 +67,14 @@ install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
 %clean_menus
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc README docs/*
 %{_gamesbindir}/*
 %{_gamesdatadir}/%{name}
-%{_menudir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
