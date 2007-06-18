@@ -34,7 +34,7 @@ cd src
 sh create_makefile.sh
 
 %build
-%make DEFINES="-DDATA_DIR='\"%{_gamesdatadir}/%{name}/\"' -DUNIX=1 -DSOUND=0 -DDEBUG=0" CPPFLAGS="%{optflags}" LIBPATHS="-L/usr/X11R6/lib64"
+%make DEFINES="-DDATA_DIR='\"%{_gamesdatadir}/%{name}/\"' -DUNIX=1 -DSOUND=0 -DDEBUG=0" CPPFLAGS="%{optflags}"
 
 %install
 rm -rf %{buildroot}
