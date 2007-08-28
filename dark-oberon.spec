@@ -45,7 +45,6 @@ cp -r dat maps races schemes -d %{buildroot}%{_gamesdatadir}/%{name}
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=Abuse
 Comment=%{Summary}
 Exec=%{_gamesbindir}/%{name}
