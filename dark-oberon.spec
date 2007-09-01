@@ -45,7 +45,7 @@ cp -r dat maps races schemes -d %{buildroot}%{_gamesdatadir}/%{name}
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
-Name=Abuse
+Name=Dark Oberon
 Comment=%{Summary}
 Exec=%{_gamesbindir}/%{name}
 Icon=%{name}
