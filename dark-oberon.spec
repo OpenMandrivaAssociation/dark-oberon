@@ -1,7 +1,7 @@
 %define	name	dark-oberon
 %define	version	1.0.2
 %define	pre	RC2
-%define	release	0.rc2.2
+%define	release	0.rc2.3
 %define	Summary	Dark Oberon
 
 Name:		%{name}
