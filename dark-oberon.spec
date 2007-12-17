@@ -18,7 +18,6 @@ Url:		http://dark-oberon.sourceforge.net/
 Summary:	%{Summary}
 License:	GPL
 BuildRequires:	X11-devel glfw Mesa-common-devel lzma
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Dark Oberon is an open source real-time strategy game similar to Warcraft II
