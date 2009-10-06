@@ -14,6 +14,8 @@ Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
 #Patch0:		dark-oberon-1.0.2-RC1-mdkconf.patch.bz2
 Patch1:		dark-oberon-1.0.2-rc2-compile-fixes.patch	
+Patch2:		fix_format_build.patch
+Patch3:		fix_makefile_xrandr_lib_missing.patch
 Url:		http://dark-oberon.sourceforge.net/
 Summary:	%{Summary}
 License:	GPL
@@ -29,6 +31,9 @@ shots of real models made out of plasticine!
 %setup -q -n %{name}-%{version}-%{pre}
 #%patch0 -p1 -b .mdkconf
 %patch1 -p0  -b .fixes
+%patch2 -p1
+%patch3 -p1
+
 find -name CVS|xargs rm -rf
 cd src
 sh create_makefile.sh
