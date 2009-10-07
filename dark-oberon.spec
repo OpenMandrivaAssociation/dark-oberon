@@ -18,7 +18,7 @@ Patch2:		fix_format_build.patch
 Patch3:		fix_makefile_xrandr_lib_missing.patch
 Url:		http://dark-oberon.sourceforge.net/
 Summary:	%{Summary}
-License:	GPLv2 CC-BY-SA CC-BY-ND
+License:	GPLv2 BY-NC-SA BY-NC-ND
 BuildRequires:	X11-devel glfw Mesa-common-devel lzma
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
