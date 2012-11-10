@@ -1,0 +1,30 @@
+diff -uNr dark-oberon-1.0.2-RC2.orig/src/dofile.cpp dark-oberon-1.0.2-RC2/src/dofile.cpp
+--- dark-oberon-1.0.2-RC2.orig/src/dofile.cpp	2005-08-17 00:23:41.000000000 +0200
++++ dark-oberon-1.0.2-RC2/src/dofile.cpp	2009-10-06 20:06:57.000000000 +0200
+@@ -281,7 +281,7 @@
+ void TFE_LINE::WriteIndent(void)
+ {
+   if (indent) for (int i = 0; i < indent; i++)
+-    fprintf(conf_file->fh, conf_file->indent_string);
++    fprintf(conf_file->fh, "%s", conf_file->indent_string);
+ }
+ 
+ 
+@@ -292,7 +292,7 @@
+ {
+   WriteIndent();
+ 
+-  if (values) fprintf(conf_file->fh, values);
++  if (values) fprintf(conf_file->fh, "%s", values);
+   fprintf(conf_file->fh, "\n");
+ }
+ 
+@@ -430,7 +430,7 @@
+   WriteIndent();
+ 
+   fprintf(conf_file->fh, "%s ", name);
+-  if (values) fprintf(conf_file->fh, values);
++  if (values) fprintf(conf_file->fh, "%s", values);
+   fprintf(conf_file->fh, "\n");
+ 
+   modified = false;

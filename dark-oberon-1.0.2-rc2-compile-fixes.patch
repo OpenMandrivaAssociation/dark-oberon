@@ -1,0 +1,186 @@
+--- ./src/donet.h.orig	2007-06-18 20:16:54.000000000 +0200
++++ ./src/donet.h	2007-06-18 20:14:34.000000000 +0200
+@@ -489,7 +489,7 @@ public:
+   /** Exception throwed when there was an error with resolving hostname. */
+   class ResolveException {};
+ 
+-  TNET_RESOLVER::TNET_RESOLVER ();
++  TNET_RESOLVER ();
+ 
+   static std::string GetHostName ();
+ 
+--- ./src/dofight.h.orig	2007-06-18 20:17:11.000000000 +0200
++++ ./src/dofight.h	2007-06-18 20:20:10.000000000 +0200
+@@ -230,7 +230,7 @@ public:
+   void SetProtection(const float new_value)
+     {if (new_value > 1.0f) protection = 1.0f; else if (new_value < 0) protection = 0; else protection = new_value;};
+ 
+-  TDEFENSE::TDEFENSE()
++  TDEFENSE()
+     { armour = 0; protection = 0; }
+ 
+ private:
+--- ./src/doraces.h.orig	2007-06-18 20:17:23.000000000 +0200
++++ ./src/doraces.h	2007-06-18 20:20:25.000000000 +0200
+@@ -755,7 +755,7 @@ public:
+   //!<Sets if unit can walk on source or building can be built on source when is empty.
+   void SetHideable(bool hide) {hideable = hide;};
+   //!<Tests whether position is available for this kind of the building.
+-  bool TSOURCE_ITEM::IsPositionAvailable(int pos_x, int pos_y);
++  bool IsPositionAvailable(int pos_x, int pos_y);
+ 
+   //! Specifies on which terrains it is able to build the item.
+   TINTERVAL<TTERRAIN_ID> buildable[DAT_SEGMENTS_COUNT];
+--- ./src/dodraw.h.orig	2007-06-18 20:17:42.000000000 +0200
++++ ./src/dodraw.h	2007-06-18 20:20:41.000000000 +0200
+@@ -140,7 +140,7 @@ struct TPROJECTION {
+   void SetProjection(TPROJECTION_TYPE projection);
+   void Update();
+ 
+-  TPROJECTION::TPROJECTION() { SetProjection(PRO_MENU); };
++  TPROJECTION() { SetProjection(PRO_MENU); };
+ };
+ 
+ 
+--- ./src/dounits.h.orig	2007-06-18 20:17:55.000000000 +0200
++++ ./src/dounits.h	2007-06-18 20:21:33.000000000 +0200
+@@ -1094,7 +1094,7 @@ public:
+ 
+   TSOURCE_UNIT * FindNewSource(TPOSITION_3D position);
+   //bool FindNewSource(TPOSITION_3D position);
+-  TSOURCE_UNIT * TWORKER_UNIT::IsSourceOnPosition(int pos_x, int pos_y);
++  TSOURCE_UNIT * IsSourceOnPosition(int pos_x, int pos_y);
+ 
+   //! Constructor.
+   TWORKER_UNIT(int uplayer, int ux, int uy, int uz, int udirection, TFORCE_ITEM *mi, int new_unit_id, bool global_unit)
+--- ./src/dowalk.h.orig	2007-06-18 20:19:44.000000000 +0200
++++ ./src/dowalk.h	2007-06-18 20:22:58.000000000 +0200
+@@ -270,7 +270,7 @@ public:
+   bool TestLastPathPosition(void);              //!< Tests if a_stem is last step.
+   TPOSITION_3D GetGoalPosition();                       //!<Get goal of the path.
+   TPATH_LIST* CreateCopy(int shift_x, int shift_y, int shift_z);          //!<The path list create copy of the itself with shift.
+-  double TPATH_LIST::CountTime(TFORCE_UNIT *unit);      //!<Counts the time, which unit spends on the exact way.
++  double CountTime(TFORCE_UNIT *unit);      //!<Counts the time, which unit spends on the exact way.
+   void DecreaseSteps(int st_count) { steps -= st_count;};    //! Decreases variable steps, used when building is build, unit cant go to the goal, but just near the newly built building.
+   void IncreaseASteps();                        //!< Increases actuall step
+   void DecreaseASteps();                        //!< Decrease actuall step
+@@ -297,10 +297,10 @@ struct TPATH_NODE {
+   //! Coordinates in the map, each step of the path is storaged in this array.
+   TPOSITION_3D path_pos[WLK_NODES_NUM];
+ 
+-  TPATH_NODE::TPATH_NODE(TPATH_NODE *first, TPOSITION_3D adding);  //!< Adding constructor.
+-  TPATH_NODE::TPATH_NODE(TPOSITION_3D goal);    //!< Constructor.
++  TPATH_NODE(TPATH_NODE *first, TPOSITION_3D adding);  //!< Adding constructor.
++  TPATH_NODE(TPOSITION_3D goal);    //!< Constructor.
+ private:
+-  TPATH_NODE::TPATH_NODE(TPATH_NODE &origin, int sx, int sy, int sz);   //!< Constructor creates copy with shift.
++  TPATH_NODE(TPATH_NODE &origin, int sx, int sy, int sz);   //!< Constructor creates copy with shift.
+   friend TPATH_LIST* TPATH_LIST::CreateCopy(int, int, int);
+ };
+ 
+--- ./src/doengine.h.orig	2007-06-18 20:19:55.000000000 +0200
++++ ./src/doengine.h	2007-06-18 20:25:22.000000000 +0200
+@@ -212,7 +212,7 @@ public: 
+   std::string GetRacIdName (std::string name);
+   std::string GetRacName (std::string id_name);
+ 
+-  std::string TMAP_INFO_LIST::GetMapName (std::string id_name);
++  std::string GetMapName (std::string id_name);
+ 
+   TMAP_INFO_LIST (void) { map_list = NULL; rac_list = NULL;};
+   ~TMAP_INFO_LIST (void) { ClearMapList(); ClearRacList();};
+@@ -276,7 +276,7 @@ public:
+     order_panel = NULL;
+   }
+ 
+-  TPANEL_INFO::TPANEL_INFO() { Clear(); }
++  TPANEL_INFO() { Clear(); }
+ };
+ 
+ extern TPANEL_INFO panel_info;
+--- ./src/doengine.cpp.orig	2007-06-18 20:27:34.000000000 +0200
++++ ./src/doengine.cpp	2007-06-18 20:30:48.000000000 +0200
+@@ -3981,7 +3981,7 @@ void CreateBuildButtons()
+ 
+     for (i = 0, node = itm->build_list.GetFirst(); node; node = node->GetNext(), i++) {
+       button = panel_info.action_panel[MNU_PANEL_BUILD]->AddGroupButton(
+-        (int)node->GetPitem(), x, y, myself->race->tex_table.GetTexture(node->GetPitem()->tg_picture_id, 0), 3
++        (long)node->GetPitem(), x, y, myself->race->tex_table.GetTexture(node->GetPitem()->tg_picture_id, 0), 3
+       );
+       SetBuildButton();
+       
+@@ -4007,7 +4007,7 @@ void CreateBuildButtons()
+   
+     for (i = 0, node = itm->GetProductsList().GetFirstNode(); node; node = node->GetNextNode(), i++) {
+       button = panel_info.action_panel[MNU_PANEL_BUILD]->AddButton(
+-        (int)node->GetProduceableItem(), x, y, myself->race->tex_table.GetTexture(node->GetProduceableItem()->tg_picture_id, 0)
++        (long)node->GetProduceableItem(), x, y, myself->race->tex_table.GetTexture(node->GetProduceableItem()->tg_picture_id, 0)
+       );
+ 
+       SetProduceButton();
+@@ -4072,7 +4072,7 @@ void CreateOrderButtons()
+ 
+   for (i = 0; i < funit->GetOrderSize(); i++) {
+     button = panel_info.order_panel->AddButton(
+-      (int)funit->GetOrderedUnit(i)->GetProduceableItem(), i * 52.0f, 0.0f, myself->race->tex_table.GetTexture(funit->GetOrderedUnit(i)->GetProduceableItem()->tg_picture_id, 0)
++      (long)funit->GetOrderedUnit(i)->GetProduceableItem(), i * 52.0f, 0.0f, myself->race->tex_table.GetTexture(funit->GetOrderedUnit(i)->GetProduceableItem()->tg_picture_id, 0)
+     );
+ 
+     sprintf(txt, "%d", i + 1);
+--- ./src/dowalk.cpp.orig	2007-06-18 20:32:39.000000000 +0200
++++ ./src/dowalk.cpp	2007-06-18 20:34:27.000000000 +0200
+@@ -1177,14 +1177,14 @@ TPATH_INFO* TA_STAR_ALG::MoveGroup(TPATH
+       }
+       //posli jednotke request, ze sa ma pohnut s danym request Id,ci uz cestu nasla alebo nie.
+       u->SendRequest(false, time_stamp,RQ_GROUP_MOVING,group_info->request_id,group_info->succ,real_dest.x,real_dest.y,real_dest.segment,
+-                      0,0,reinterpret_cast<int>(u_path),group_info->event_type);
++                      0,0,reinterpret_cast<long>(u_path),group_info->event_type);
+     }    
+     else
+     {
+       if (!leader || !fu)   //leader sa nenasiel, tak sa vsetkym jednotkam aspon ma poslat request, ze maju prejst do US_STAY
+       {
+         u->SendRequest(false, time_stamp,RQ_GROUP_MOVING,group_info->request_id,group_info->succ,group_info->real_goal.x,group_info->real_goal.y,group_info->real_goal.segment,
+-                      0,0,reinterpret_cast<int>(group_info->path),group_info->event_type);
++                      0,0,reinterpret_cast<long>(group_info->path),group_info->event_type);
+       }
+     }
+     actual = actual->next;
+@@ -1192,7 +1192,7 @@ TPATH_INFO* TA_STAR_ALG::MoveGroup(TPATH
+ 
+   if(leader)
+     leader->SendRequest(false, time_stamp,RQ_GROUP_MOVING,group_info->request_id,group_info->succ,group_info->real_goal.x,group_info->real_goal.y,group_info->real_goal.segment,
+-                      0,0,reinterpret_cast<int>(group_info->path),group_info->event_type);
++                      0,0,reinterpret_cast<long>(group_info->path),group_info->event_type);
+ 
+   group_info->path = NULL;
+ 
+@@ -1227,7 +1227,7 @@ TPATH_INFO* TA_STAR_ALG::ComputePath(TPA
+ 
+     path_info->unit->SendRequest(false, glfwGetTime(), RQ_PATH_FINDING, path_info->request_id,path_info->succ,
+                                  path_info->real_goal.x, path_info->real_goal.y,path_info->real_goal.segment,path_info->e_simple1,
+-                                 path_info->e_simple2,reinterpret_cast<int>(p_pathlist),path_info->event_type);                 
++                                 path_info->e_simple2,reinterpret_cast<long>(p_pathlist),path_info->event_type);                 
+ 
+     path_info->unit->ReleasePointer();
+     pool_path_info->PutToPool(path_info);
+@@ -1252,7 +1252,7 @@ TNEAREST_INFO* TA_STAR_ALG::SearchForNea
+   
+     pnearest_info->unit->SendRequest(false, glfwGetTime(),RQ_NEAREST_SEARCHING,pnearest_info->request_id,pnearest_info->simple1,
+                                    pnearest_info->simple2,0,0,0,0, 
+-                                   reinterpret_cast<int>(pnearest_info->nearest),pnearest_info->event_type);
++                                   reinterpret_cast<long>(pnearest_info->nearest),pnearest_info->event_type);
+ 
+     pool_nearest_info->PutToPool(pnearest_info);
+     pnearest_info = NULL;
+--- src/doconfig.h.orig	2007-06-18 21:22:01.000000000 +0200
++++ src/doconfig.h	2007-06-18 21:22:10.000000000 +0200
+@@ -211,7 +211,7 @@ struct TCONFIG {
+   GLubyte pr_warfog_color[4];         //!< Precomputed warfog color and alfa-channel. [-128..127]
+   double pr_expected_frame_duration;  //!< Precomputed expected frame duration from max_frame_rate. [seconds]
+ 
+-  TCONFIG::TCONFIG();
++  TCONFIG();
+ };
+ 
+ 

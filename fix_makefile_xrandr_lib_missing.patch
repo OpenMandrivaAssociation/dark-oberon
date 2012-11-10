@@ -1,0 +1,12 @@
+diff -uNr dark-oberon-1.0.2-RC2.orig/src/create_makefile.sh dark-oberon-1.0.2-RC2/src/create_makefile.sh
+--- dark-oberon-1.0.2-RC2.orig/src/create_makefile.sh	2005-08-17 00:23:42.000000000 +0200
++++ dark-oberon-1.0.2-RC2/src/create_makefile.sh	2009-10-06 21:30:03.000000000 +0200
+@@ -10,7 +10,7 @@
+ TARGETS='../dark-oberon'
+ INCLUDES='-I/usr/X11R6/include -I/usr/X11R6/include/GL -I../libs'
+ LIBPATHS='-L/usr/X11R6/lib -L/usr/lib -L/usr/local/lib -L../libs'
+-LIBRARIES='-pthread -lglfw -lGL -lX11 -lGLU'
++LIBRARIES='-pthread -lglfw -lGL -lX11 -lGLU -lXrandr'
+ CPP='g++ $(CPPFLAGS) $(INCLUDES) $(DEFINES)'
+ DATA_DIR=''
+ 
