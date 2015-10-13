@@ -39,13 +39,12 @@ sh create_makefile.sh
 %make DEFINES="-DDATA_DIR='\"%{_gamesdatadir}/%{name}/\"' -DUNIX=1 -DSOUND=0 -DDEBUG=0" CPPFLAGS="%{optflags}"
 
 %install
-%__rm -rf %{buildroot}
-%__install -m755 dark-oberon -D %{buildroot}%{_gamesbindir}/%{name}
-%__install -d %{buildroot}%{_gamesdatadir}/%{name}
-%__cp -r dat maps races schemes -d %{buildroot}%{_gamesdatadir}/%{name}
+install -m755 dark-oberon -D %{buildroot}%{_gamesbindir}/%{name}
+install -d %{buildroot}%{_gamesdatadir}/%{name}
+cp -r dat maps races schemes -d %{buildroot}%{_gamesdatadir}/%{name}
 
-%__mkdir_p %{buildroot}%{_datadir}/applications
-%__cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=Dark Oberon
 Comment=Real-time strategy game
@@ -57,12 +56,9 @@ StartupNotify=true
 Categories=Game;StrategyGame;
 EOF
 
-%__install -m644 %{SOURCE11} -D %{buildroot}%{_miconsdir}/%{name}.png
-%__install -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/%{name}.png
-%__install -m644 %{SOURCE13} -D %{buildroot}%{_liconsdir}/%{name}.png
-
-%clean
-%__rm -rf %{buildroot}
+install -m644 %{SOURCE11} -D %{buildroot}%{_miconsdir}/%{name}.png
+install -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/%{name}.png
+install -m644 %{SOURCE13} -D %{buildroot}%{_liconsdir}/%{name}.png
 
 %files
 %doc README docs/*
