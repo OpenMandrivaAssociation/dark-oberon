@@ -2,7 +2,7 @@
 
 Name:		dark-oberon
 Version:	1.0.2
-Release:	0.rc2.5
+Release:	0.rc2.6
 Summary:	Dark Oberon is a real-time strategy game
 Group:		Games/Strategy
 License:	GPLv2 BY-NC-SA BY-NC-ND
