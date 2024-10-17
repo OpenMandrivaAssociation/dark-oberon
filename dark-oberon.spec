@@ -6,7 +6,7 @@ Release:	0.rc2.6
 Summary:	Dark Oberon is a real-time strategy game
 Group:		Games/Strategy
 License:	GPLv2 BY-NC-SA BY-NC-ND
-Url:		http://dark-oberon.sourceforge.net/
+Url:		https://dark-oberon.sourceforge.net/
 Source0:	%{name}-%{version}-%{pre}.tar.lzma
 Source11:	%{name}-16x16.png
 Source12:	%{name}-32x32.png
