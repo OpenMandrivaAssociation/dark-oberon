@@ -14,6 +14,7 @@ Source13:	%{name}-48x48.png
 Patch1:		dark-oberon-1.0.2-rc2-compile-fixes.patch
 Patch2:		fix_format_build.patch
 Patch3:		fix_makefile_xrandr_lib_missing.patch
+BuildRequires:	make
 BuildRequires:	X11-devel
 BuildRequires:	glfw-devel
 BuildRequires:	mesa-common-devel
